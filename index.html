@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Moodify 🎵</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+
+</head>
+<body>
+  <div class="container text-center mt-5">
+    <h1 class="mb-3">Moodify <span>🎵</span></h1>
+    <p>Upload a selfie or select a mood to get song recommendations!</p>
+
+    <form method="POST" enctype="multipart/form-data" id="moodForm">
+      <div class="form-group">
+        <label for="image">Upload Image (Optional)</label><br>
+        <input type="file" name="image" id="imageInput" class="form-control-file d-inline-block w-auto">
+      </div>
+
+      <p>Or choose a mood:</p>
+      <div class="btn-group mb-3" role="group" aria-label="Mood Buttons">
+        <button type="submit" name="mood" value="happy" class="btn btn-success">Happy</button>
+        <button type="submit" name="mood" value="sad" class="btn btn-primary">Sad</button>
+        <button type="submit" name="mood" value="angry" class="btn btn-danger">Angry</button>
+        <button type="submit" name="mood" value="calm" class="btn btn-info">Calm</button>
+      </div>
+
+      <div>
+        <button type="submit" class="btn btn-dark mt-2">Get Recommendation</button>
+      </div>
+    </form>
+
+    {% if mood and songs %}
+    <div class="card shadow-sm p-3 w-75 mx-auto mt-4">
+      <h5>Detected Mood: <strong>{{ mood.capitalize() }}</strong></h5>
+      <p class="mt-3">Recommended Songs:</p>
+      {% for song in songs %}
+      <div class="d-flex justify-content-between align-items-center border p-2 rounded mb-2">
+        <span>{{ song[0] }}</span>
+        <a href="{{ song[1] }}" target="_blank" class="btn btn-outline-primary btn-sm">Get Link</a>
+      </div>
+      {% endfor %}
+    </div>
+    {% endif %}
+  </div>
+
+  <script>
+    const imageInput = document.getElementById("imageInput");
+    const moodButtons = document.querySelectorAll("button[name='mood']");
+
+    imageInput.addEventListener("change", () => {
+      if (imageInput.files.length > 0) {
+        moodButtons.forEach(btn => btn.disabled = true);
+      } else {
+        moodButtons.forEach(btn => btn.disabled = false);
+      }
+    });
+
+    moodButtons.forEach(btn => {
+      btn.addEventListener("click", () => {
+        imageInput.disabled = true;
+      });
+    });
+  </script>
+</body>
+</html>

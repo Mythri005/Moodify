@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Results</title>
+</head>
+<body>
+    <h1>Your detected mood: {{ mood.capitalize() }}</h1>
+    {% if image_path %}
+        <img src="{{ url_for('static', filename='uploads/' ~ image_path.split('/')[-1]) }}" width="300">
+    {% endif %}
+    <h2>Recommended Songs:</h2>
+    {% for song in songs %}
+        <iframe width="420" height="315" src="{{ song }}"></iframe><br><br>
+    {% endfor %}
+    <a href="/">Back to Home</a>
+</body>
+</html>
