@@ -1,4 +1,4 @@
-#MOODIFY
+
 # 🎧 Mood-Based Music Recommender 🎵
 
 Welcome to your personalized music companion!  
