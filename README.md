@@ -10,7 +10,7 @@ This web app detects your **mood** from a selfie or lets you choose it manually 
 
 🎭 **Choose Your Mood:**
 - Upload a selfie (we'll analyze your facial expression using ML), **OR**
-- Select your mood manually: 😊 Happy | 😢 Sad | 😡 Angry | 😌 Calm
+- Select your mood manually: 😊 Happy | 😢 Sad | 😡 Angry | 😌 Calm | 😲 Surprise | 😱 Fear | 😐 Neutral | 🤢 Disgusted
 
 🧠 **ML in Action:**
 - Uses **DeepFace** or **FER** to detect emotion from your uploaded photo.
